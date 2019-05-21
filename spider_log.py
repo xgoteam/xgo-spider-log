@@ -56,13 +56,23 @@ count_monitor_logger = create_logger('count')
 info_monitor_logger = create_logger('info')
 
 def spider_start():
-    info_monitor_logger.info('抓取开始')
+    msg = {
+        'info': '抓取开始'
+    }
+    info_monitor_logger.info(json.dumps(msg))
 
 def spider_stop():
-    info_monitor_logger.info('抓取结束')
+    msg = {
+        'info': '抓取结束'
+    }
+    info_monitor_logger.info(json.dumps(msg))
 
 def crawl_content(type, count):
-    count_monitor_logger.info(delimiter.join([type, str(count)]))
+    msg = {
+        'type': type,
+        'count': count
+    }
+    count_monitor_logger.info(json.dumps(msg))
 
 def queue_remaining(type, count):
     count_monitor_logger.info(delimiter.join([f'{type}-剩余', str(count)]))
