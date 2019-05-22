@@ -11,7 +11,7 @@ pipenv install -e git+https://github.com/xgoteam/xgo-spider-log.git#egg=xgo-spid
 ### 使用
 
 ```python
-from spider_log import spider_start, spider_stop, queue_remaining, crawl_content, general_log
+from xgo_spider_log import spider_start, spider_stop, queue_remaining, crawl_content, general_log
 
 spider_start()
 crawl_content('ahh', 1)

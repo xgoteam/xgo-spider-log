@@ -1,4 +1,4 @@
-from spider_log import spider_start, spider_stop, queue_remaining, crawl_content, general_log
+from xgo_spider_log import spider_start, spider_stop, queue_remaining, crawl_content, general_log
 
 spider_start()
 crawl_content('ahh', 1)

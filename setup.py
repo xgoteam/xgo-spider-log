@@ -5,10 +5,10 @@ from setuptools import setup, find_packages
 
 setup(
     name='xgo-spider-log',
-    version='0.0.1',
+    version='0.0.2',
     author='cielpy',
     author_email='beijiu572@gmail.com',
-    url='https://github.com/cielpy/xgo-spider-log',
+    url='https://github.com/xgoteam/xgo-spider-log',
     description='XGo 爬虫日志',
     packages=find_packages(),
 )

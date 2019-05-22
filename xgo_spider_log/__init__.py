@@ -6,6 +6,8 @@ import json
 
 delimiter = '|'
 
+name = 'xgo_spider_log'
+
 
 def create_logger(log_level=logging.DEBUG):
     """
