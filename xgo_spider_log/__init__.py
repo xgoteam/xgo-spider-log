@@ -58,42 +58,42 @@ monitor_logger = create_logger(logging.DEBUG)
 
 def spider_start():
     msg = {
-        'type': 'info',
+        'type': 'event',
         'content': '抓取开始'
     }
     monitor_logger.info(json.dumps(msg, ensure_ascii=False))
 
 def spider_stop():
     msg = {
-        'type': 'info',
+        'type': 'event',
         'content': '抓取结束'
     }
     monitor_logger.info(json.dumps(msg, ensure_ascii=False))
 
 def spider_aborting():
     msg = {
-        'type': 'info',
+        'type': 'event',
         'content': '异常结束'
     }
     monitor_logger.info(json.dumps(msg, ensure_ascii=False))
 
 def spider_node_start():
     msg = {
-        'type': 'info',
+        'type': 'event',
         'content': '节点抓取开始'
     }
     monitor_logger.info(json.dumps(msg, ensure_ascii=False))
 
 def spider_node_stop():
     msg = {
-        'type': 'info',
+        'type': 'event',
         'content': '节点抓取结束'
     }
     monitor_logger.info(json.dumps(msg, ensure_ascii=False))
 
 def spider_node_aborting():
     msg = {
-        'type': 'info',
+        'type': 'event',
         'content': '节点异常结束'
     }
     monitor_logger.info(json.dumps(msg, ensure_ascii=False))
