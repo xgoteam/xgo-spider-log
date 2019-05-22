@@ -2,11 +2,12 @@ import logging
 import logging.handlers
 import socket
 import os
+import json
 
 delimiter = '|'
 
 
-def create_logger(logger_type, log_level=logging.DEBUG):
+def create_logger(log_level=logging.DEBUG):
     """
     create monitor logger
     :param log_level logging log level
@@ -19,7 +20,7 @@ def create_logger(logger_type, log_level=logging.DEBUG):
     project_name = os.getenv('PROJECT_NAME')
 
     # create logger
-    logger = logging.getLogger(project_name + '-' + logger_type)
+    logger = logging.getLogger(project_name)
     logger.setLevel(log_level)
 
     class ContextFilter(logging.Filter):
@@ -29,11 +30,10 @@ def create_logger(logger_type, log_level=logging.DEBUG):
         def filter(self, record):
             record.hostname = hostname
             record.project_name = project_name
-            record.logger_type = logger_type
             record.delimiter = delimiter
             return True
     logger.addFilter(ContextFilter())
-    formatter = logging.Formatter('%(hostname)s%(delimiter)s%(project_name)s%(delimiter)s%(name)s%(delimiter)s%(asctime)s%(delimiter)s%(levelname)s%(delimiter)s%(logger_type)s%(delimiter)s%(message)s')
+    formatter = logging.Formatter('%(hostname)s%(delimiter)s%(project_name)s%(delimiter)s%(name)s%(delimiter)s%(asctime)s%(delimiter)s%(levelname)s%(delimiter)s%(message)s')
 
 
     if debug:
@@ -52,30 +52,46 @@ def create_logger(logger_type, log_level=logging.DEBUG):
     return logger
 
 
-count_monitor_logger = create_logger('count')
-info_monitor_logger = create_logger('info')
+monitor_logger = create_logger(logging.DEBUG)
 
 def spider_start():
     msg = {
-        'info': '抓取开始'
+        'type': 'info',
+        'content': '抓取开始'
     }
-    info_monitor_logger.info(json.dumps(msg))
+    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
 
 def spider_stop():
     msg = {
-        'info': '抓取结束'
+        'type': 'info',
+        'content': '抓取结束'
     }
-    info_monitor_logger.info(json.dumps(msg))
+    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
 
 def crawl_content(type, count):
     msg = {
-        'type': type,
+        'type': 'count',
+        'content_type': type,
         'count': count
     }
-    count_monitor_logger.info(json.dumps(msg))
+    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
 
 def queue_remaining(type, count):
-    count_monitor_logger.info(delimiter.join([f'{type}-剩余', str(count)]))
+    msg = {
+        'type': 'count',
+        'content_type': f'{type}-剩余',
+        'count': count
+    }
+    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
+
+def general_log(log_dict):
+    msg = {
+        'type': 'general'
+    }
+    msg.update(log_dict)
+
+    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
+
     
 
 if __name__ == "__main__":

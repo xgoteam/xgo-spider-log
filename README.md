@@ -11,7 +11,11 @@ pipenv install -e git+ssh://https://github.com/cielpy/hiii-dingding-notify.git#e
 ### 使用
 
 ```python
-from dingding_notify.dingding_notify import send_message
+from spider_log import spider_start, spider_stop, queue_remaining, crawl_content, general_log
 
-send('通知内容', ['token'])
+spider_start()
+crawl_content('ahh', 1)
+queue_remaining('ahh', 1)
+general_log({'ahh': 111})
+spider_stop()
 ```
