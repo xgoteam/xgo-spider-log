@@ -1,11 +1,11 @@
 ### 介绍
 
-本项目主要功能为发送钉钉通知使用
+本项目主要封装了几个爬虫监控方法
 
 ### 安装
 
 ```
-pipenv install -e git+ssh://https://github.com/cielpy/hiii-dingding-notify.git#egg=hiii-dingding-notify
+pipenv install -e git+https://github.com/xgoteam/xgo-spider-log.git#egg=xgo-spider-log
 ```
 
 ### 使用
