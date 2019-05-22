@@ -56,47 +56,51 @@ def create_logger(log_level=logging.DEBUG):
 
 monitor_logger = create_logger(logging.DEBUG)
 
+
+def log_syslog(msg):
+    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
+
 def spider_start():
     msg = {
         'type': 'event',
         'content': '抓取开始'
     }
-    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
+    log_syslog(msg)
 
 def spider_stop():
     msg = {
         'type': 'event',
         'content': '抓取结束'
     }
-    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
+    log_syslog(msg)
 
 def spider_aborting():
     msg = {
         'type': 'event',
         'content': '异常结束'
     }
-    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
+    log_syslog(msg)
 
 def spider_node_start():
     msg = {
         'type': 'event',
         'content': '节点抓取开始'
     }
-    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
+    log_syslog(msg)
 
 def spider_node_stop():
     msg = {
         'type': 'event',
         'content': '节点抓取结束'
     }
-    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
+    log_syslog(msg)
 
 def spider_node_aborting():
     msg = {
         'type': 'event',
         'content': '节点异常结束'
     }
-    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
+    log_syslog(msg)
 
 def crawl_content(type, count):
     msg = {
@@ -104,7 +108,7 @@ def crawl_content(type, count):
         'content_type': type,
         'count': count
     }
-    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
+    log_syslog(msg)
 
 def queue_remaining(type, count):
     msg = {
@@ -112,7 +116,7 @@ def queue_remaining(type, count):
         'content_type': f'{type}-剩余',
         'count': count
     }
-    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
+    log_syslog(msg)
 
 def general_log(log_dict):
     msg = {
@@ -120,7 +124,7 @@ def general_log(log_dict):
     }
     msg.update(log_dict)
 
-    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
+    log_syslog(msg)
 
 def general_log_info(info):
     general_log({'info': info})
