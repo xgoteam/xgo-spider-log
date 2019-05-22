@@ -32,9 +32,10 @@ def create_logger(log_level=logging.DEBUG):
         def filter(self, record):
             record.project_name = project_name
             record.delimiter = delimiter
+            record.program = project_name
             return True
     logger.addFilter(ContextFilter())
-    formatter = logging.Formatter('%(project_name)s%(delimiter)s%(name)s%(delimiter)s%(asctime)s%(delimiter)s%(levelname)s%(delimiter)s%(message)s', "%Y-%m-%d%H:%M:%S")
+    formatter = logging.Formatter('%(program)s %(project_name)s%(delimiter)s%(name)s%(delimiter)s%(asctime)s%(delimiter)s%(levelname)s%(delimiter)s%(message)s', "%Y-%m-%d%H:%M:%S")
 
 
     if debug:
