@@ -5,7 +5,7 @@
 ### 安装
 
 ```
-pipenv install -e git+https://github.com/xgoteam/xgo-spider-log.git#egg=xgo-spider-log
+pipenv install xgo-spider-log
 ```
 
 ### 使用
