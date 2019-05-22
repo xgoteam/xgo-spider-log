@@ -70,6 +70,34 @@ def spider_stop():
     }
     monitor_logger.info(json.dumps(msg, ensure_ascii=False))
 
+def spider_aborting():
+    msg = {
+        'type': 'info',
+        'content': '异常结束'
+    }
+    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
+
+def spider_node_start():
+    msg = {
+        'type': 'info',
+        'content': '节点抓取开始'
+    }
+    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
+
+def spider_node_stop():
+    msg = {
+        'type': 'info',
+        'content': '节点抓取结束'
+    }
+    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
+
+def spider_node_aborting():
+    msg = {
+        'type': 'info',
+        'content': '节点异常结束'
+    }
+    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
+
 def crawl_content(type, count):
     msg = {
         'type': 'count',
@@ -94,6 +122,8 @@ def general_log(log_dict):
 
     monitor_logger.info(json.dumps(msg, ensure_ascii=False))
 
+def general_log_info(info):
+    general_log({'info': info})
     
 
 if __name__ == "__main__":
