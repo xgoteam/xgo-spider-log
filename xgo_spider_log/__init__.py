@@ -35,7 +35,7 @@ def create_logger(log_level=logging.DEBUG):
             record.program = project_name
             return True
     logger.addFilter(ContextFilter())
-    formatter = logging.Formatter('%(program)s %(project_name)s%(delimiter)s%(name)s%(delimiter)s%(asctime)s%(delimiter)s%(levelname)s%(delimiter)s%(message)s', "%Y-%m-%d%H:%M:%S")
+    formatter = logging.Formatter('%(program)s %(project_name)s%(delimiter)s%(name)s%(delimiter)s%(asctime)s%(delimiter)s%(levelname)s%(delimiter)s%(message)s', "%Y-%m-%d %H:%M:%S")
 
 
     if debug:
@@ -61,14 +61,14 @@ def spider_start():
         'type': 'info',
         'content': '抓取开始'
     }
-    monitor_logger.info(json.dumps(msg, ensure_ascii=False, separators=(',', ':')))
+    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
 
 def spider_stop():
     msg = {
         'type': 'info',
         'content': '抓取结束'
     }
-    monitor_logger.info(json.dumps(msg, ensure_ascii=False, separators=(',', ':')))
+    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
 
 def crawl_content(type, count):
     msg = {
@@ -84,7 +84,7 @@ def queue_remaining(type, count):
         'content_type': f'{type}-剩余',
         'count': count
     }
-    monitor_logger.info(json.dumps(msg, ensure_ascii=False, separators=(',', ':')))
+    monitor_logger.info(json.dumps(msg, ensure_ascii=False))
 
 def general_log(log_dict):
     msg = {
